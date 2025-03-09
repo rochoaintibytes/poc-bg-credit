@@ -4,12 +4,21 @@ import { cn } from "@/lib/utils";
 
 interface InputProps extends React.ComponentProps<"input"> {
   leadingTitle?: string;
+  helperText?: string;
 }
 
-function Input({ className, type, leadingTitle, ...props }: InputProps) {
+function Input({
+  className,
+  type,
+  leadingTitle,
+  helperText,
+  ...props
+}: InputProps) {
   return (
     <div className="flex flex-col gap-2 ">
-      <div className="font-semibold text-black font-normal dark:font-white ">
+      <div
+        className={cn("font-semibold text-black dark:font-white", className)}
+      >
         {leadingTitle}
       </div>
       <input
@@ -23,6 +32,11 @@ function Input({ className, type, leadingTitle, ...props }: InputProps) {
         )}
         {...props}
       />
+      <div
+        className={cn("font-semibold text-red-400 dark:font-white", className)}
+      >
+        {helperText}
+      </div>
     </div>
   );
 }
